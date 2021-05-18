@@ -1,0 +1,24 @@
+﻿.div-container {
+	max-width: 900px;
+	margin: auto;
+}
+
+.div-center {
+	text-align: center
+}
+
+.right {
+	float: right;
+}
+
+.left {
+	float: left;
+}
+
+.required {
+	color: red;
+}
+
+.clear {
+	clear: both;
+}
