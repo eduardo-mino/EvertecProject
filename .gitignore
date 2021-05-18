@@ -1,0 +1,13 @@
+
+.vs
+EvertecProject/obj
+EvertecProject_API/obj
+EvertecProject_ApiClient/obj
+EvertecProject_NotificationsHandlerAPI/obj
+EvertecProject_WebApplication/obj
+EvertecProject_BusinessLogic/obj
+EvertecProject_DataAccess/obj
+EvertecProject_ServiceLogic/obj
+EvertecProject_Common/obj
+
+EvertecProject_Database/EvertecProject_Database.dbmdl
