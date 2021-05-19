@@ -33,3 +33,7 @@ BACK END
     <add name="Orders" connectionString="server={{servidor}};database={{database name}};Integrated Security=True" providerName="System.Data.SqlClient" />
 
 
+API NOTIFICATIONS HANDLER
+Esta API fue creada para recibir las notificaciones de pago de PlaceToPay con el fin de actualizar el estado de pago de la orden correspondiente.
+
+- esta API se debe publicar en una aplicación bajo un sitio de IIS que utilice el puerto 80 o el 443 porque así lo requiere la documentación de PlaceToPay

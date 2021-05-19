@@ -8,5 +8,6 @@ AS
 		[created_at], 
 		[updated_at]
 	FROM Orders
+	ORDER BY Id DESC
 
 RETURN 0

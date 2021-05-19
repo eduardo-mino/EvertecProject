@@ -18,7 +18,7 @@ namespace EvertecProject_ServiceLogic
 		private static string WebCheckOutUrl { get { return ConfigurationManager.AppSettings["WebCheckOutUrl"]; } }
 		private static string WebPortalUrl { get { return ConfigurationManager.AppSettings["WebPortalUrl"]; } }
 
-		private Gateway gateway = new P2P(Login,
+		private Gateway _gateway = new P2P(Login,
 										  TranKey,
 										  new Uri(WebCheckOutUrl),
 										  Gateway.TP_REST);
@@ -26,24 +26,28 @@ namespace EvertecProject_ServiceLogic
 		public RedirectResponse CreateRequest(string orderId, string ipAddress, string userAgent)
 		{
 			Amount amount = new Amount(1000);
-			Payment payment = new Payment(orderId, "DESCRIPTION", amount, true);
+			Payment payment = new Payment(orderId, "DESCRIPTION", amount);
 			RedirectRequest request = new RedirectRequest(payment,
 				string.Format(WebPortalUrl, orderId),
 				ipAddress,
 				userAgent,
 				DateTime.Now.AddMinutes(30).ToString("yyyy-MM-ddTHH:mm:sszzz"));
 
-			RedirectResponse response = gateway.Request(request);
+			RedirectResponse response = _gateway.Request(request);
 
 			return response;
 		}
 
 		public RedirectInformation GetRequestInfo(string requestId)
 		{
-			RedirectInformation response = gateway.Query(requestId);
+			RedirectInformation response = _gateway.Query(requestId);
 
 			return response;
 		}
 
+		public Notification ReadNotification(string data)
+		{
+			return _gateway.ReadNotification(data);
+		}
 	}
 }

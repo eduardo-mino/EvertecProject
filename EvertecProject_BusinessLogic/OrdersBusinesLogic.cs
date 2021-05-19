@@ -41,6 +41,58 @@ namespace EvertecProject_BusinessLogic
 			}
 		}
 
+		public void UpdateOrder(int orderId, string status, DateTime updateTime, string paymentId)
+		{
+			try
+			{
+				new OrdersDataAccess().UpdateOrder(orderId, status, updateTime, paymentId);
+			}
+			catch (Exception ex)
+			{
+				EventLog.WriteEntry("Evertec - Orders API", ex.StackTrace, EventLogEntryType.Error);
+				throw ex;
+			}
+		}
+
+		public void UpdateOrder(string status, DateTime updateTime, string paymentId)
+		{
+			try
+			{
+				new OrdersDataAccess().UpdateOrder(status, updateTime, paymentId);
+			}
+			catch (Exception ex)
+			{
+				EventLog.WriteEntry("Evertec - Orders API", ex.StackTrace, EventLogEntryType.Error);
+				throw ex;
+			}
+		}
+
+		public List<Order> AllOrders()
+		{
+			try
+			{
+				return new OrdersDataAccess().AllOrders();
+			}
+			catch (Exception ex)
+			{
+				EventLog.WriteEntry("Evertec - Orders API", ex.StackTrace, EventLogEntryType.Error);
+				throw ex;
+			}
+		}
+
+		public List<Order> GetOrders(string customer_name, string customer_email, string customer_mobile)
+		{
+			try
+			{
+				return new OrdersDataAccess().GetOrders(customer_name, customer_email, customer_mobile);
+			}
+			catch (Exception ex)
+			{
+				EventLog.WriteEntry("Evertec - Orders API", ex.StackTrace, EventLogEntryType.Error);
+				throw ex;
+			}
+		}
+
 		public string WebCheckoutCreateRequest(string orderId, string ipAddress, string userAgent)
 		{
 			try
@@ -91,37 +143,26 @@ namespace EvertecProject_BusinessLogic
 			}
 		}
 
-		public void UpdateOrder(int orderId, string status, DateTime updateTime, string paymentId)
+		public void GetWebCheckoutNotification(string data)
 		{
 			try
 			{
-				new OrdersDataAccess().UpdateOrder(orderId, status, updateTime, paymentId);
-			}
-			catch (Exception ex)
-			{
-				EventLog.WriteEntry("Evertec - Orders API", ex.StackTrace, EventLogEntryType.Error);
-				throw ex;
-			}
-		}
+				WebCheckOutHelper wcoHelper = new WebCheckOutHelper();
+				Notification notification = wcoHelper.ReadNotification(data);
 
-		public List<Order> AllOrders()
-		{
-			try
-			{
-				return new OrdersDataAccess().AllOrders();
-			}
-			catch (Exception ex)
-			{
-				EventLog.WriteEntry("Evertec - Orders API", ex.StackTrace, EventLogEntryType.Error);
-				throw ex;
-			}
-		}
-
-		public List<Order> GetOrders(string customer_name, string customer_email, string customer_mobile)
-		{
-			try
-			{
-				return new OrdersDataAccess().GetOrders(customer_name, customer_email, customer_mobile);
+				var bl = new OrdersBusinesLogic();
+				var dateNow = DateTime.Now;
+				if (notification.IsValidNotification())
+				{
+					if (notification.IsApproved())
+					{
+						bl.UpdateOrder(Constants.PAYED, dateNow, notification.RequestId.ToString());
+					}
+					else if (notification.IsRejected())
+					{
+						bl.UpdateOrder(Constants.REJECTED, dateNow, notification.RequestId.ToString());
+					}
+				}
 			}
 			catch (Exception ex)
 			{

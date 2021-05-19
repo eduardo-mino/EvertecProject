@@ -68,5 +68,6 @@
     <Build Include="dbo\Stored Procedures\Update_Order.sql" />
     <Build Include="dbo\Tables\Orders.sql" />
     <Build Include="dbo\Stored Procedures\Get_FilteredOrders.sql" />
+    <Build Include="dbo\Stored Procedures\Update_OrderByPaymentId.sql" />
   </ItemGroup>
 </Project>

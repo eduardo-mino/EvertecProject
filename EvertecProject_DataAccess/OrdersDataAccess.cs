@@ -87,6 +87,21 @@ namespace EvertecProject_DataAccess
 			}
 		}
 
+		public void UpdateOrder(string status, DateTime updateTime, string paymentId)
+		{
+			using (SqlConnection connection = new SqlConnection(GetConnectionString("Orders")))
+			{
+				connection.Open();
+				SqlCommand sqlcom = new SqlCommand(Constants.StoredProcedure_UpdateOrder, connection);
+				sqlcom.CommandType = System.Data.CommandType.StoredProcedure;
+				sqlcom.Parameters.AddWithValue("@status", status);
+				sqlcom.Parameters.AddWithValue("@updateTime", updateTime);
+				sqlcom.Parameters.AddWithValue("@paymentId", paymentId);
+				sqlcom.ExecuteNonQuery();
+				connection.Close();
+			}
+		}
+
 		public List<Order> AllOrders()
 		{
 			System.Collections.Generic.List<Order> result = new List<Order>();

@@ -44,6 +44,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PlacetoPay.Integrations.Library.CSharp">
+      <HintPath>C:\Users\spfarm\Downloads\Release-20210514T190915Z-001\Release\PlacetoPay.Integrations.Library.CSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -103,6 +106,16 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EvertecProject_BusinessLogic\EvertecProject_BusinessLogic.csproj">
+      <Project>{702DF1F0-AEAC-4A4C-98EE-A8A16679D481}</Project>
+      <Name>EvertecProject_BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EvertecProject_Common\EvertecProject_Common.csproj">
+      <Project>{681B39DE-51E5-4177-B822-889ACAB4F7CE}</Project>
+      <Name>EvertecProject_Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

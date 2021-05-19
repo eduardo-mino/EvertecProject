@@ -2,6 +2,7 @@
 .vs
 EvertecProject/obj
 EvertecProject_API/obj
+EvertecProject_API/bin
 EvertecProject_ApiClient/obj
 EvertecProject_NotificationsHandlerAPI/obj
 EvertecProject_WebApplication/obj
@@ -9,5 +10,11 @@ EvertecProject_BusinessLogic/obj
 EvertecProject_DataAccess/obj
 EvertecProject_ServiceLogic/obj
 EvertecProject_Common/obj
-
 EvertecProject_Database/EvertecProject_Database.dbmdl
+EvertecProject_ApiClient/bin
+EvertecProject_BusinessLogic/bin
+EvertecProject_Database/bin
+EvertecProject_NotificationsHandlerAPI/bin
+EvertecProject_Database/obj
+EvertecProject_ServiceLogic/bin
+EvertecProject_WebApplication/bin
