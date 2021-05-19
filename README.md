@@ -37,3 +37,7 @@ API NOTIFICATIONS HANDLER
 Esta API fue creada para recibir las notificaciones de pago de PlaceToPay con el fin de actualizar el estado de pago de la orden correspondiente.
 
 - esta API se debe publicar en una aplicación bajo un sitio de IIS que utilice el puerto 80 o el 443 porque así lo requiere la documentación de PlaceToPay
+- tiene dos endpoint sque manejan diferente las notificaciones. se debe evaluar cual es la mejor forma de recibir esas notificaciones para quitar el otro método.
+- el web.config también debe tener configurado el connectionstring para la database:
+    <add name="Orders" connectionString="server={{servidor}};database={{database name}};Integrated Security=True" providerName="System.Data.SqlClient" />
+

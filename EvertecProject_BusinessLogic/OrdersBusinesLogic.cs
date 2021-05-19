@@ -150,17 +150,17 @@ namespace EvertecProject_BusinessLogic
 				WebCheckOutHelper wcoHelper = new WebCheckOutHelper();
 				Notification notification = wcoHelper.ReadNotification(data);
 
-				var bl = new OrdersBusinesLogic();
+				var da = new OrdersDataAccess();
 				var dateNow = DateTime.Now;
 				if (notification.IsValidNotification())
 				{
 					if (notification.IsApproved())
 					{
-						bl.UpdateOrder(Constants.PAYED, dateNow, notification.RequestId.ToString());
+						da.UpdateOrder(Constants.PAYED, dateNow, notification.RequestId.ToString());
 					}
 					else if (notification.IsRejected())
 					{
-						bl.UpdateOrder(Constants.REJECTED, dateNow, notification.RequestId.ToString());
+						da.UpdateOrder(Constants.REJECTED, dateNow, notification.RequestId.ToString());
 					}
 				}
 			}
